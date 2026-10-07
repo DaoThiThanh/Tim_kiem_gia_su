@@ -13,7 +13,17 @@ const Register: React.FC = () => {
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
-      message.success('Đăng ký tài khoản thành công!');
+      const payload = {
+        ho_ten: values.ho_ten,
+        email: values.email,
+        so_dien_thoai: values.so_dien_thoai,
+        password: values.password,
+        vai_tro: role,
+        lop_hoc: role === 'HOC_VIEN' ? values.lop_hoc : undefined
+      };
+      
+      await api.post('/users/register', payload);
+      message.success('Đăng ký tài khoản thành công! Vui lòng đăng nhập.');
       navigate('/login');
     } catch (error: any) {
       message.error(error.response?.data?.message || 'Đăng ký thất bại!');

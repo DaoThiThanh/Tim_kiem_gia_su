@@ -11,7 +11,10 @@ const Login: React.FC = () => {
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
-      // await api.post('/auth/login', values);
+      const response = await api.post('/users/login', values);
+      localStorage.setItem('accessToken', response.data.data.accessToken);
+      localStorage.setItem('refreshToken', response.data.data.refreshToken);
+      localStorage.setItem('user', JSON.stringify(response.data.data.user));
       message.success('Đăng nhập thành công!');
       navigate('/');
     } catch (error: any) {

@@ -38,6 +38,19 @@ router.post('/login', login)
 
 /**
  * @swagger
+ * /users/register:
+ *   post:
+ *     tags: [Users]
+ *     summary: Đăng ký tài khoản (Dành cho Học viên / Gia sư)
+ *     security: []
+ *     responses:
+ *       201:
+ *         description: Đăng ký thành công
+ */
+router.post('/register', create)
+
+/**
+ * @swagger
  * /users/refresh:
  *   post:
  *     tags: [Users]
